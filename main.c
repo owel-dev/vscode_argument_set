@@ -218,6 +218,11 @@ int		main(int ac, char **av)
 		printf("인수는 1개만(원하는 랜덤 숫자 갯수) 넣어주세요.");
 		return (1);
 	}
+	if (atoi(av[1]) > 5000)
+	{
+		printf("인수는 5000 이하만 가능합니다.");
+		return (1);
+	}
 	buf = (char *)malloc(sizeof(char) * 3000000);
 	if (buf == NULL)
 		return (1);
