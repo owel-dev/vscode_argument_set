@@ -202,6 +202,38 @@ void	input_str(char **buf, char *str)
 	}
 }
 
+int		check_arg(int ac, char *av)
+{
+	int i;
+
+	if (ac != 2)
+	{
+		printf("인수는 1개만(원하는 랜덤 숫자 갯수) 넣어주세요.");
+		return (1);
+	}
+	if (av[0] == '-')
+	{
+		printf("인수는 양수만 가능합니다.");
+		return (1);
+	}
+	if (atoi(&av[1]) > 5000)
+	{
+		printf("인수는 5000 이하만 가능합니다.");
+		return (1);
+	}
+	i = 0;
+	while (av[i])
+	{
+		if (!('0' <= av[i] && av[i] <= '9') && av[i] !='-')
+		{
+			printf("숫자 인수를 넣어주세요.");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int		main(int ac, char **av)
 {
 	int 	fd;
@@ -213,16 +245,8 @@ int		main(int ac, char **av)
 	int		range;
 	int 	i;
 
-	if (ac != 2)
-	{
-		printf("인수는 1개만(원하는 랜덤 숫자 갯수) 넣어주세요.");
+	if (check_arg(ac, av[1]) == 1)
 		return (1);
-	}
-	if (atoi(av[1]) > 5000)
-	{
-		printf("인수는 5000 이하만 가능합니다.");
-		return (1);
-	}
 	buf = (char *)malloc(sizeof(char) * 3000000);
 	if (buf == NULL)
 		return (1);
