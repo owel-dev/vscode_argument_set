@@ -178,17 +178,13 @@ void	input_num(char **buf, int num)
 	char *itoa;
 
 	itoa = ft_itoa(num);
-	**buf = '\"';
-	(*buf)++;
 	while (*itoa != '\0')
 	{
 		**buf = *itoa;
 		(*buf)++;
 		itoa++;
 	}
-	**buf = '\"';
-	(*buf)++;
-	**buf = ',';
+	**buf = ' ';
 	(*buf)++;
 }
 
@@ -216,7 +212,7 @@ int		check_arg(int ac, char *av)
 		printf("인수는 양수만 가능합니다.");
 		return (1);
 	}
-	if (atoi(&av[1]) > 5000)
+	if (atoi(av) > 5000)
 	{
 		printf("인수는 5000 이하만 가능합니다.");
 		return (1);
@@ -283,15 +279,15 @@ int		main(int ac, char **av)
 	i = 0;
 	while (i < range)
 	{
-		if (i % 10 == 0)
-			input_str(&arg_start, "\n\t\t\t\t");
+		if (i == 0)
+			input_str(&arg_start, "\n\t\t\t\t\"");
 		input_num(&arg_start, arr_random[i]);
 		i++;
 	}
 	free(arr_random);
 
 	arg_start--;
-	input_str(&arg_start, "\n\t\t\t");
+	input_str(&arg_start, "\"\n\t\t\t");
 	ft_strlcpy(arg_start, arg_end_after, ft_strlen(arg_end_after) + 1);
 	free(arg_end_after);
 
