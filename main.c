@@ -170,9 +170,6 @@ int 	*return_arr_random(char **av)
 	}
 	free(check_minus);
 	free(check_plus);
-	index = 0;
-	while (index < range)
-		index++;
 	return (ret);
 }
 
