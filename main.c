@@ -221,7 +221,8 @@ int		main(int ac, char **av)
 		return (1);
 	}
 	buf = (char *)malloc(sizeof(char) * 3000000);
-
+	if (buf == NULL)
+		return (1);
 	fd = open("./.vscode/launch.json", O_RDWR);
 	if (fd == -1)
 	{
@@ -232,6 +233,11 @@ int		main(int ac, char **av)
 	close(fd);
 
 	fd2 = open("./.vscode/launch.json", O_RDWR | O_CREAT | O_TRUNC);
+	if (fd2 == -1)
+	{
+		printf("파일이 없네요. 기본 파일 경로는 ./.vscode/launch.json입니다.");
+		return (1);
+	}
 	int i = 0;
 	while (buf[i])
 	{
@@ -239,6 +245,8 @@ int		main(int ac, char **av)
 		{
 			arg_start = ft_strchr(&buf[i], '[') + 1;
 			arg_end_after = ft_strdup(ft_strchr(arg_start, ']'));
+			if (arg_end_after == NULL)
+				return (1);
 			break;
 		}
 		i++;
