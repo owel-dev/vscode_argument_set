@@ -214,6 +214,7 @@ int		main(int ac, char **av)
 	char 	*arg_end_after;
 	int		*arr_random;
 	int		range;
+	int 	i;
 
 	if (ac != 2)
 	{
@@ -238,7 +239,7 @@ int		main(int ac, char **av)
 		printf("파일이 없네요. 기본 파일 경로는 ./.vscode/launch.json입니다.");
 		return (1);
 	}
-	int i = 0;
+	i = 0;
 	while (buf[i])
 	{
 		if (strncmp(&buf[i], "args", 4) == 0)
